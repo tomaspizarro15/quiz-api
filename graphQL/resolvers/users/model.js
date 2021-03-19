@@ -1,33 +1,33 @@
-const { ObjectID } = require('bson');
-const mongoose = require('mongoose'); 
-const schema = mongoose.Schema; 
+const mongoose = require('mongoose')
+const { ObjectID } = require('mongodb')
 
-const user = new schema({
-    name : {
-        type : String,
-        required : true,
-    },
-    email : {
-        type : String,
-        required : true,
-    },
+const Schema = mongoose.Schema;
+
+const User = new Schema({
     username : {
         type : String,
         required : true
     },
-    password : {
-        type : String,
-        required : true,
+    name: {
+        type: String,
+        required: true
     },
-    games :[
+    email: {
+        type: String,
+        required: true,
+    },
+    games: [
         {
             id : ObjectID,
-            name : String, 
-            result : number,
-            theme : String,
+            label: String,
+            theme: String,
+            mode: String,
+            score : Number,
         }
-    ]
-
+    ],
+    password: {
+        type: String,
+        required : true,
+    }
 })
-
-module.exports = mongoose.model('users' , user)
+module.exports = mongoose.model('users', User)
