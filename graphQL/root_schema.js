@@ -1,17 +1,20 @@
 const { buildSchema } = require('graphql')
 const types = require('./types/types')
+const userQuery = require('./query/user')
 const mySchema = buildSchema(
     `${types}
     input userQuery {
         email : String!
         name : String
     }
+    input userSeed {
+        name : String
+    }
     type rootMutation {
-        findUser(input : userQuery) : User!
-        createUser(input : userQuery) : User!
+        seed(input : userSeed) : User
     }
     type rootQuery {
-        hello : String
+      ${userQuery}
     }
     schema {
         mutation : rootMutation
